@@ -1,0 +1,22 @@
+{
+  "name": "hangman-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hangman.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MimiChang2/Hangman-CLI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MimiChang2/Hangman-CLI/issues"
+  },
+  "homepage": "https://github.com/MimiChang2/Hangman-CLI#readme",
+  "dependencies": {
+    "inquirer": "^4.0.1"
+  }
+}
