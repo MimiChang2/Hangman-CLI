@@ -1,10 +1,10 @@
 //2nd level - like movie.js
-// need to require letter.js in this file
 
+//need to require letter.js in this file
 var Letter = require("./letter.js");
 
+//create variable to hold all the letters the user guesses as they type it
 var Word = function(guessed, notGuessed, visible, notVisible) {
-    //create variable to hold all the letters the user guesses as they type it
     //right letter will display on hangman word line
     //wrong letter will display on a line with wrong guesses
     this.rightLetter = [];
@@ -22,8 +22,6 @@ var Word = function(guessed, notGuessed, visible, notVisible) {
         console.log(Word);
     };
 };
-
-
 
 
 
