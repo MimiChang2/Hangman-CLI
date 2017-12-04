@@ -1,25 +1,24 @@
 //lowest level- like castMember
 
 //each letter is either guessed or not guessed ; visible or not visible
-var Letter = function(guessed, notGuessed, visible, notVisible) {
-    this.guessed = guessed;
-    this.notGuessed = notGuessed;
-    this.visible = visible;
-    this.notVisible = notVisible;
+//at start of game, it's always not guessed and not visible
+var Letter = function(value) {
+    this.guessed = false;
+    this.visible = false;
+    this.value = value;
 
     //when letter is pressed and if the letter is in the word, change status from invisible to visible
-    //if letter is not in the word, change status of notGuessed to guessed
+    //if letter is not in the word, change status to guessed
 
-    var letterObj = new Letter;
-
-    this.userGuess = function() {
-        if(Letter === notVisible && notGuessed) {
-            Letter = visible;
-            Letter = guesesed;
-            console.log(userGuess);
+    this.userGuess = function(guess) {
+        if(this.value === guess) {
+            this.guessed = true;
+            this.visible = true;
+            console.log(guess);
+            console.log(this.guessed);
         }
         else {
-            userGuess = visible;
+            console.log(guess);
         }
     };
     // when all letters visible, you win ... letters still invisible, lose
@@ -30,5 +29,9 @@ var Letter = function(guessed, notGuessed, visible, notVisible) {
     //     console.log("You Lose!")}
     // }
 };
+
+var test = new Letter("e");
+test.userGuess("y");
+console.log(test);
 
 module.exports = Letter;

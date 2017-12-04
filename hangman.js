@@ -2,6 +2,10 @@
 var inquirer = require("inquirer");
 var Word = require("./word.js");
 
+var Alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+var NatParks = ["Crater Lake", "Antelope Canyon", "Yosemite", "Saguaro", "Bryce Canyon", "Monument Valley"];
+
 var Hangman = new Word();
 console.log(this.rightLetter);
 console.log(this.wrongLetter);

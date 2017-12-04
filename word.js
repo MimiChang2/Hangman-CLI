@@ -23,6 +23,7 @@ var Word = function(guessed, notGuessed, visible, notVisible) {
     };
 };
 
+var letterObj = new Letter;
 
 
 module.exports = Word;
