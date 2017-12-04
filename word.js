@@ -1,6 +1,5 @@
-//2nd level - like movie.js
+//2nd level - need to require letter.js in this file
 
-//need to require letter.js in this file
 var Letter = require("./letter.js");
 
 //create an array to represent the word randomly chosen to be guessed
@@ -16,7 +15,9 @@ var Letter = require("./letter.js");
 //word is the string
 var Word = function(word) {
     this.LetterArray = [];
+    this.LetterArray.splice();
 
+    //push userInput asked in hangman.js to this array
     for(var l = 0; l < word.length; l++) {
         this.LetterArray.push(new Letter(word[l]));
     }

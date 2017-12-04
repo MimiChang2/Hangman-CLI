@@ -1,4 +1,4 @@
-//each letter is either guessed or not guessed ; exposed or not exposed
+//each letter is either guessed or not guessed, exposed or not exposed
 //at start of game, it's always not guessed and not exposed
 var Letter = function(value) {
     //this.guessed = false;
@@ -29,8 +29,9 @@ var Letter = function(value) {
     // }
 };
 
-var test = new Letter("e");
-test.userGuess("y");
-console.log(test);
+//test letter.js before moving on to see if it works:
+// var test = new Letter("e");
+// test.userGuess("y");
+// console.log(test);
 
 module.exports = Letter;
