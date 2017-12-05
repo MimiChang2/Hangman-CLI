@@ -2,13 +2,33 @@
 var inquirer = require("inquirer");
 var Word = require("./word.js");
 
-var Alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var NatParks = ["Crater Lake", "Antelope Canyon", "Yosemite", "Saguaro", "Bryce Canyon", "Monument Valley"];
+var guesses;
+
+//var guessedLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var guessedLetters = [];
+var currentWord;
+
+//user types in letter to guess
+//if guessed letter is already guessed
+//tell user to guess another letter
+//else
+//add guess letter to array of guessed letters
+//if guessed letter is a letter in Word
+//show the letter
+//is the game over?
+
+
+function isGameOver() {
+    //if all letters are guessed or guesses run out
+    //return true
+
+    return false;
+}
+
 
 //when letter exposed, remove letter from Alphabet array
 
-var NatParks = ["Crater Lake", "Antelope Canyon", "Yosemite", "Saguaro", "Bryce Canyon", "Monument Valley"];
-var currentWord;
-var guesses = 10;
 
 //ask user to guess
 //guessLetter();
@@ -18,10 +38,27 @@ newGame();
 //select word by selecting index # of NatParks array- generate random number for index
 function newGame() {
     guesses = 10;
-    //var r = Math.floor(Math.random() * 6);
-    currentWord = new Word(NatParks[0]);
+    var i = randomNumber(0, NatParks.length - 1);
+    currentWord = new Word(NatParks[i]);
+    showBlanks(currentWord.letterArray);
     guessLetter();
 }
+
+function showBlanks(letters) {
+    var blankString = "";
+    for(var i = 0; i < letters.length; i++) {
+        if(letters[i] === " ") {
+            blankString += "  ";
+        }
+        blankString += "_ ";
+    }
+    console.log(blankString);
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 //Guess Letter:
 //if guesses > 0; ask user to guess a letter, expose letter in currentWord, check if wins
 //if word completely exposed, user wins, confirm new game
@@ -33,7 +70,7 @@ function guessLetter() {
     //also add in if user already guessed letter, don't allow the letter to be guessed
     //if(this.guessed === true);
     //{remove letter from alphabet array and don't let user type that letter in}
-    console.log("_ _ _ _ _ _ _ _");
+    //console.log("_ _ _ _ _ _ _ _");
     console.log("Guesses Left: " + guesses);
     console.log(currentWord);
 
@@ -69,8 +106,6 @@ function guessLetter() {
         //ask user if they want to play again
     }
 }
-
-//newGame();
 
 //Confirm New Game- ask play again? if yes, new game; else exit:
 function confirmPlayAgain() {

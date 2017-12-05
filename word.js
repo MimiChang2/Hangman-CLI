@@ -14,38 +14,36 @@ var Letter = require("./letter.js");
 
 //word is the string
 var Word = function(word) {
-    this.LetterArray = [];
-    this.LetterArray.splice();
+    this.word = word;
+    this.letterArray = this.word.split("");
 
+    //var tempArr = word.split("");
     //push userInput asked in hangman.js to this array
-    for(var l = 0; l < word.length; l++) {
-        this.LetterArray.push(new Letter(word[l]));
+    this.isLetterInWord = function(letter) {
 
-        //console.log(new Letter);
-        // if(userGuess === new Letter) {
-        //     console.log("Correct");
-        //     //console.log(new Letter);
-        // }
-        // else {
-        //     console.log("Guess Again!");
-        // }
 
-    }
+        for(var i = 0; i < this.letterArray.length; i++) {
+            if(this.letterArray[i] === letter) {
+                console.log("correct");
+                return true;
+            }
+            console.log("guess again!");
+            return false;
+        }
+    };
 };
-
-//this.wrongLetterArray = [];
 
 //expose individual letters each time
 this.exposed = function(value) {
-    for(var i = 0; i < this.LetterArray.length; i++) {
+    for(var i = 0; i < this.letterArray.length; i++) {
         this.letterArray[i].exposeIfMatch(value);
     }
 };
 
 //whether or not user wins
 this.isExposed = function() {
-    for(var i = 0; i < this.LetterArray.length; i++) {
-        if(!this.LetterArray[i].exposed()) {
+    for(var i = 0; i < this.letterArray.length; i++) {
+        if(!this.letterArray[i].exposed()) {
             result = false;
         }
     }
