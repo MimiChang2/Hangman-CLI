@@ -31,7 +31,7 @@ var Letter = function(value) {
 
 //test letter.js before moving on to see if it works:
 // var test = new Letter("e");
-// test.userGuess("y");
+// test.userGuess("s");
 // console.log(test);
 
 module.exports = Letter;
