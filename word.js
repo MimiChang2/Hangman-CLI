@@ -31,7 +31,7 @@ var Word = function(word) {
         // }
 
     }
-}
+};
 
 //this.wrongLetterArray = [];
 

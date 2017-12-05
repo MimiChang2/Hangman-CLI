@@ -7,7 +7,6 @@ var Alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 //when letter exposed, remove letter from Alphabet array
 
 var NatParks = ["Crater Lake", "Antelope Canyon", "Yosemite", "Saguaro", "Bryce Canyon", "Monument Valley"];
-var numGuesses;
 var currentWord;
 var guesses = 10;
 
@@ -38,7 +37,7 @@ function guessLetter() {
     console.log("Guesses Left: " + guesses);
     console.log(currentWord);
 
-    if(numGuesses > 0) {
+    if(guesses > 0) {
         inquirer.prompt([{
                 message: "Guess a letter:",
                 name: "letter"
@@ -50,24 +49,24 @@ function guessLetter() {
                     //confirm next game
                 }
                 else {
-                    numGuesses--;
+                    guesses--;
                     guessLetter();
                 }
             });
 
         //ask user to guess
-        guessLetter();
+        //guessLetter();
     }
     else {
         //ask user if they want to play again
     }
 }
 
-newGame();
+//newGame();
 
 //Confirm New Game- ask play again? if yes, new game; else exit:
 function confirmPlayAgain() {
-    if(numGuesses = 0) {
+    if(guesses = 0) {
         inquirer
             .prompt([{
                 type: "confirm",
