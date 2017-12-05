@@ -9,17 +9,18 @@ var Alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 var NatParks = ["Crater Lake", "Antelope Canyon", "Yosemite", "Saguaro", "Bryce Canyon", "Monument Valley"];
 var numGuesses;
 var currentWord;
+var guesses = 10;
 
 //ask user to guess
-guessLetter();
+//guessLetter();
 newGame();
 
 //New game: set number of guesses to 10, randomly select word
 //select word by selecting index # of NatParks array- generate random number for index
 function newGame() {
     guesses = 10;
-    var r = Math.floor(Math.random() * 6);
-    currentWord = new Word(NatParks[r]);
+    //var r = Math.floor(Math.random() * 6);
+    currentWord = new Word(NatParks[0]);
     guessLetter();
 }
 //Guess Letter:
@@ -34,13 +35,16 @@ function guessLetter() {
     //if(this.guessed === true);
     //{remove letter from alphabet array and don't let user type that letter in}
     console.log("_ _ _ _ _ _ _ _");
+    console.log("Guesses Left: " + guesses);
+    console.log(currentWord);
+
     if(numGuesses > 0) {
         inquirer.prompt([{
                 message: "Guess a letter:",
                 name: "letter"
             }])
-            .then(function(userInput) {
-                currentWord.exposeLetter(userInput.letter);
+            .then(function(userGuess) {
+                currentWord.exposed(userGuess.Letter);
                 if(currentWord.isExposed()) {
                     //user won
                     //confirm next game
@@ -83,7 +87,7 @@ function confirmPlayAgain() {
 
     }
     else {
-        confirmPlayAgain();
+        //confirmPlayAgain();
     }
 }
 

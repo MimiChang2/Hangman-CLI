@@ -25,9 +25,9 @@ var Word = function(word) {
     //this.wrongLetterArray = [];
 
     //expose individual letters each time
-    this.exposeLetter = function(letter) {
+    this.exposed = function(value) {
         for(var i = 0; i < this.LetterArray.length; i++) {
-            this.letterArray[i].exposed(letter);
+            this.letterArray[i].exposed(value);
         }
     };
 
