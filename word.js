@@ -38,7 +38,7 @@ var Word = function(word) {
 //expose individual letters each time
 this.exposed = function(value) {
     for(var i = 0; i < this.LetterArray.length; i++) {
-        this.letterArray[i].exposed(value);
+        this.letterArray[i].exposeIfMatch(value);
     }
 };
 

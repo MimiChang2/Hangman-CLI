@@ -43,15 +43,23 @@ function guessLetter() {
                 name: "letter"
             }])
             .then(function(userGuess) {
-                currentWord.exposed(userGuess.Letter);
-                if(currentWord.isExposed()) {
-                    //user won
-                    //confirm next game
+                if(userGuess === new Letter) {
+                    console.log("Correct");
+
+                    //console.log(new Letter);
                 }
-                else {
-                    guesses--;
-                    guessLetter();
-                }
+                // else {
+                //     console.log("Guess Again!");
+                // }
+                //currentWord.exposed(userGuess.value);
+                // if(currentWord.isExposed()) {
+                //     //user won
+                //     //confirm next game
+                // }
+                // else {
+                //     guesses--;
+                //     guessLetter();
+                // }
             });
 
         //ask user to guess
