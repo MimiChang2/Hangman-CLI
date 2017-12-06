@@ -13,42 +13,47 @@ var Letter = require("./letter.js");
 //Word- 1.. n:Letters , exposeLetter(letter), isExposed()
 
 //word is the string
-var Word = function(word) {
-    this.word = word;
+var Word = function(randomWord) {
+    this.word = randomWord;
     this.letterArray = this.word.split("");
 
     //var tempArr = word.split("");
     //push userInput asked in hangman.js to this array
-    this.isLetterInWord = function(letter) {
-
+    this.getLetterIndex = function(letter) {
 
         for(var i = 0; i < this.letterArray.length; i++) {
             if(this.letterArray[i] === letter) {
                 console.log("correct");
-                return true;
+                return i;
             }
-            console.log("guess again!");
-            return false;
         }
+        // cool, originally this line is wrap in the for loop
+        // but that'll cause the method to break whenever the user hits a wrong letter
+        // so I move it out...
+        // I like your design in using negative as indicator of false
+        // perhaps you can create a variable that collects true or false using number in the previous for loop
+        // and return them all at once at the bottom i.e. return tempVar;
+        console.log("guess again!");
+        return -1;
     };
 };
 
-//expose individual letters each time
-this.exposed = function(value) {
-    for(var i = 0; i < this.letterArray.length; i++) {
-        this.letterArray[i].exposeIfMatch(value);
-    }
-};
+// //expose individual letters each time
+// this.exposed = function(value) {
+//     for(var i = 0; i < this.letterArray.length; i++) {
+//         this.letterArray[i].exposeIfMatch(value);
+//     }
+// };
 
 //whether or not user wins
-this.isExposed = function() {
-    for(var i = 0; i < this.letterArray.length; i++) {
-        if(!this.letterArray[i].exposed()) {
-            result = false;
-        }
-    }
-    return true;
-};
+// this.isExposed = function() {
+//     for(var i = 0; i < this.letterArray.length; i++) {
+//         if(!this.letterArray[i].exposed()) {
+//             result = false;
+//         }
+//     }
+//     return true;
+// };
 
 //this will push right letter into hangman word line in a new Letter variable
 // for(i = 0; i < rightLetterArray.length; i++) {

@@ -4,6 +4,7 @@ var Word = require("./word.js");
 
 var NatParks = ["Crater Lake", "Antelope Canyon", "Yosemite", "Saguaro", "Bryce Canyon", "Monument Valley"];
 var guesses;
+var blanks = [];
 
 //var guessedLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var guessedLetters = [];
@@ -18,17 +19,7 @@ var currentWord;
 //show the letter
 //is the game over?
 
-
-function isGameOver() {
-    //if all letters are guessed or guesses run out
-    //return true
-
-    return false;
-}
-
-
 //when letter exposed, remove letter from Alphabet array
-
 
 //ask user to guess
 //guessLetter();
@@ -40,24 +31,78 @@ function newGame() {
     guesses = 10;
     var i = randomNumber(0, NatParks.length - 1);
     currentWord = new Word(NatParks[i]);
-    showBlanks(currentWord.letterArray);
-    guessLetter();
+    convertToBlanks();
+    showBlanks();
+    promptGuess();
 }
 
-function showBlanks(letters) {
-    var blankString = "";
-    for(var i = 0; i < letters.length; i++) {
-        if(letters[i] === " ") {
-            blankString += "  ";
+function convertToBlanks() {
+    for(var i = 0; i < currentWord.letterArray.length; i++) {
+        if(currentWord.letterArray[i] === " ") {
+            blanks.push(" ");
         }
-        blankString += "_ ";
+        else {
+            blanks.push("_");
+        }
     }
-    console.log(blankString);
+}
+
+function showBlanks() {
+    var blanksString = "";
+    for(var i = 0; i < blanks.length; i++) {
+        blanksString += blanks[i] + " ";
+    }
+    console.log(blanksString);
 }
 
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function promptGuess() {
+    inquirer.prompt([{
+            message: "Guess a letter:",
+            name: "letter"
+        }])
+        .then(function(userGuess) {
+            var letterIndex = currentWord.getLetterIndex(userGuess.letter)
+            if(letterIndex >= 0) {
+                blanks[letterIndex] = userGuess.letter;
+            }
+
+            if(!isGameOver()) {
+                showBlanks();
+                promptGuess();
+            }
+
+            // if(userGuess === new Letter) {
+            // console.log("Correct");
+
+            //console.log(new Letter);
+            //
+            // else {
+            //     console.log("Guess Again!");
+            // }
+            //currentWord.exposed(userGuess.value);
+            // if(currentWord.isExposed()) {
+            //     //user won
+            //     //confirm next game
+            // }
+            // else {
+            //     guesses--;
+            //     guessLetter();
+            // }
+        });
+}
+
+function isGameOver() {
+    //if all letters are guessed or guesses run out
+    if(guesses = 0) {
+        return true;
+    }
+    return false;
+}
+
 
 //Guess Letter:
 //if guesses > 0; ask user to guess a letter, expose letter in currentWord, check if wins
@@ -65,73 +110,51 @@ function randomNumber(min, max) {
 //if word not completely exposed, don't win, decrement guesses by 1, guess letter
 //else: confirm new game
 
-function guessLetter() {
-    //console.log() number of blanks in the word chosen
-    //also add in if user already guessed letter, don't allow the letter to be guessed
-    //if(this.guessed === true);
-    //{remove letter from alphabet array and don't let user type that letter in}
-    //console.log("_ _ _ _ _ _ _ _");
-    console.log("Guesses Left: " + guesses);
-    console.log(currentWord);
+// function guessLetter() {
+//     //console.log() number of blanks in the word chosen
+//     //also add in if user already guessed letter, don't allow the letter to be guessed
+//     //if(this.guessed === true);
+//     //{remove letter from alphabet array and don't let user type that letter in}
+//     //console.log("_ _ _ _ _ _ _ _");
+//     console.log("Guesses Left: " + guesses);
+//     console.log(currentWord);
 
-    if(guesses > 0) {
-        inquirer.prompt([{
-                message: "Guess a letter:",
-                name: "letter"
-            }])
-            .then(function(userGuess) {
-                if(userGuess === new Letter) {
-                    console.log("Correct");
+//     if(guesses > 0) {
 
-                    //console.log(new Letter);
-                }
-                // else {
-                //     console.log("Guess Again!");
-                // }
-                //currentWord.exposed(userGuess.value);
-                // if(currentWord.isExposed()) {
-                //     //user won
-                //     //confirm next game
-                // }
-                // else {
-                //     guesses--;
-                //     guessLetter();
-                // }
-            });
 
-        //ask user to guess
-        //guessLetter();
-    }
-    else {
-        //ask user if they want to play again
-    }
-}
+//         //ask user to guess
+//         //guessLetter();
+//     }
+//     else {
+//         //ask user if they want to play again
+//     }
+// }
 
 //Confirm New Game- ask play again? if yes, new game; else exit:
-function confirmPlayAgain() {
-    if(guesses = 0) {
-        inquirer
-            .prompt([{
-                type: "confirm",
-                message: "Play again?",
-                name: "confirm",
-                default: true
-            }])
-            .then(function(userInput) {
-                if(type === true) {
-                    newGame();
-                }
-                else {
-                    //exit
-                }
-            });
+// function confirmPlayAgain() {
+//     if(guesses = 0) {
+//         inquirer
+//             .prompt([{
+//                 type: "confirm",
+//                 message: "Play again?",
+//                 name: "confirm",
+//                 default: true
+//             }])
+//             .then(function(userInput) {
+//                 if(type === true) {
+//                     newGame();
+//                 }
+//                 else {
+//                     //exit
+//                 }
+//             });
 
 
-    }
-    else {
-        //confirmPlayAgain();
-    }
-}
+//     }
+//     else {
+//         //confirmPlayAgain();
+//     }
+// }
 
 /*var Hangman = new Word();
  console.log(this.rightLetter);
